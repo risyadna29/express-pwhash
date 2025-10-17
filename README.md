@@ -1,4 +1,4 @@
-# 🔐 Proyek Hands-On: Password Hashing dengan Express, Prisma, & Bcrypt
+# 🔐 Proyek Hands-On: Password Hashing dengan Express, Prisma & Bcrypt
 
 Selamat datang di sesi *hands-on* untuk materi *password hashing*! Proyek ini adalah starter kit dasar yang akan kita gunakan untuk mempraktikkan cara mengamankan password pengguna secara benar.
 
@@ -27,6 +27,7 @@ Ikuti langkah-langkah ini di terminal Anda untuk menyiapkan proyek sebelum sesi 
 git clone [URL_GITHUB_ANDA]
 cd hashing-hands-on
 ```
+
 ### 2. Install Semua Dependensi
 Perintah ini akan mengunduh semua *library* yang dibutuhkan oleh proyek dari `package.json`.
 ```bash
@@ -51,5 +52,28 @@ npx prisma migrate dev
 ```
 Jika berhasil, Anda akan melihat sebuah folder `prisma` berisi file `dev.db`.
 
+---
 
-**Selamat mengikuti sesi hands-on, teman-teman!**
+## 📝 Sesi Hands-On: Apa yang Akan Kita Buat?
+
+Pada sesi kali ini, kita akan fokus pada file `src/server.js` untuk membangun dua *endpoint* API yang krusial untuk autentikasi.
+
+### **1. Endpoint Registrasi (`POST /register`)**
+Tujuan dari endpoint ini adalah untuk membuat pengguna baru dengan aman.
+- Menerima `email` dan `password` dari *body request*.
+- **Meng-hash** `password` yang diterima menggunakan `bcrypt` untuk mengubahnya menjadi string yang aman.
+- Menyimpan `email` dan **password yang sudah di-hash** ke dalam database menggunakan Prisma.
+- Kita akan membuktikan bahwa data yang tersimpan di database bukanlah password asli pengguna.
+
+### **2. Endpoint Login (`POST /login`)**
+Endpoint ini bertugas untuk memverifikasi kredensial pengguna saat mereka mencoba masuk.
+- Menerima `email` dan `password` dari pengguna.
+- Mencari pengguna di database berdasarkan `email` mereka.
+- Jika pengguna ditemukan, kita akan menggunakan `bcrypt.compare()` untuk **membandingkan** `password` yang baru dimasukkan dengan *hash* yang tersimpan di database.
+- Memberikan respons berhasil jika cocok, atau gagal jika tidak cocok.
+
+Melalui dua fungsi ini, kita akan melihat secara langsung alur kerja pengamanan password yang benar, di mana aplikasi tidak pernah menyimpan atau melihat password mentah pengguna setelah proses registrasi.
+
+---
+
+**Selamat mengikuti sesi hands-on teman-teman!** 🎉
