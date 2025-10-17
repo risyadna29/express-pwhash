@@ -51,4 +51,5 @@ npx prisma migrate dev
 ```
 Jika berhasil, Anda akan melihat sebuah folder `prisma` berisi file `dev.db`.
 
+
 **Selamat mengikuti sesi hands-on, teman-teman!**
